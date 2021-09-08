@@ -6,7 +6,8 @@
       "@types/node": "^8.10.66",
       "ts-node": "3.3.0",
       "nodemon": "^2.0.12",
-      "typescript": "3.3.3333"
+      "typescript": "3.3.3333",
+      "ngrok": "^3.4.0"
    },
    "dependencies": {
       "bcrypt": "^5.0.1",
@@ -23,6 +24,7 @@
       "start": "node build/index.js",
       "startTs": "ts-node src/index.ts",
       "build": "tsc --build",
+      "ngrok": "ngrok http 8000",
       "startNodemon": "nodemon src/index.ts"
    }
 }

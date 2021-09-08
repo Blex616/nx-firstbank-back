@@ -10,7 +10,11 @@ export class AccountController {
     private accountHistory = getRepository(AccountHistory);
 
     async accountsUser(request: Request, response: Response, next: NextFunction) {
-        return this.accountRepository.find({ user: request.body.user });
+        let accounts = await this.accountRepository.find({ relations: ['user'], where: { user: request.body.user } });
+        accounts.map(data => {
+            delete data.user["password"];
+        })
+        return accounts
     }
 
     async accountHistoryUser(request: Request, response: Response, next: NextFunction) {

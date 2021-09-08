@@ -1,7 +1,18 @@
-# Awesome Project Build with TypeORM
+# TypeORM Express
 
-Steps to run this project:
+Dependencias
 
-1. Run `npm i` command
-2. Setup database settings inside `ormconfig.json` file
-3. Run `npm start` command
+-Node
+-npm
+-postgres
+
+Instalar requerimientos
+npm install
+
+Configurar base de datos
+Archivo ormconfig
+la base de datos se debe llamar
+nxfirstbank
+
+Una vez todo este instalado correr el proyecto
+npm run startNodemon
