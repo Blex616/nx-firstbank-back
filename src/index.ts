@@ -92,21 +92,21 @@ createConnection()
             await connection.manager.save(userTwo);
         }
         if (!accountValidateOne) {
-            accountOne.balance = 1
+            accountOne.balance = 100000
             accountOne.user = userOne
             accountOne.AcNumber = "12345678900";
             accountOne.type = "Ahorros";
             await connection.manager.save(accountOne);
         }
         if (!accountValidateTwo) {
-            accountTwo.balance = 1
+            accountTwo.balance = 100000
             accountTwo.user = userOne
             accountTwo.AcNumber = "12345678901";
             accountTwo.type = "Corriente";
             await connection.manager.save(accountTwo);
         }
         if (!accountValidateThree) {
-            accountThree.balance = 1
+            accountThree.balance = 100000
             accountThree.user = userTwo
             accountThree.AcNumber = "12345678902";
             accountThree.type = "Ahorros";
