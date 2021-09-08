@@ -6,6 +6,8 @@ import { Request, Response } from "express";
 import { authenticateToken, checkRole } from "./middleware/JWT";
 import { Routes } from "./routes";
 import { User } from "./entity/User";
+import { Account } from "./entity/Accounts";
+
 
 createConnection()
     .then(async (connection) => {
@@ -50,18 +52,65 @@ createConnection()
         });
 
         let userRepository = connection.getRepository(User);
-        const user = new User();
-        const userValidate = await userRepository.findOne({
+        let accountRepository = connection.getRepository(Account);
+        const userOne = new User();
+        const userTwo = new User();
+        const accountOne = new Account();
+        const accountTwo = new Account();
+        const accountThree = new Account();
+        const userValidateOne = await userRepository.findOne({
             where: { identification: "115270707" },
         });
-        if (!userValidate) {
-            user.username = "Blex"
-            user.identification = "1152";
-            user.firstName = "Admin";
-            user.lastName = "Admin";
-            user.password = "2021";
-            user.role = "ADMIN";
-            await connection.manager.save(user);
+        const userValidateTwo = await userRepository.findOne({
+            where: { identification: "115270708" },
+        });
+        const accountValidateOne = await accountRepository.findOne({
+            where: { AcNumber: "12345678900" },
+        });
+        const accountValidateTwo = await accountRepository.findOne({
+            where: { AcNumber: "12345678901" },
+        });
+        const accountValidateThree = await accountRepository.findOne({
+            where: { AcNumber: "12345678902" },
+        });
+        if (!userValidateOne) {
+            userOne.username = "Blex"
+            userOne.identification = "115270707";
+            userOne.firstName = "Julian";
+            userOne.lastName = "Iglesias Sanchez";
+            userOne.password = "2021";
+            userOne.role = "ADMIN";
+            await connection.manager.save(userOne);
+        }
+        if (!userValidateTwo) {
+            userTwo.username = "Cito"
+            userTwo.identification = "115270708";
+            userTwo.firstName = "Juan";
+            userTwo.lastName = "Agudelo Duque";
+            userTwo.password = "2021";
+            userTwo.role = "ADMIN";
+            await connection.manager.save(userTwo);
+        }
+        if (!accountValidateOne) {
+            accountOne.balance = 1
+            accountOne.user = userOne
+            accountOne.AcNumber = "12345678900";
+            accountOne.type = "Ahorros";
+            await connection.manager.save(accountOne);
+        }
+        if (!accountValidateTwo) {
+            accountTwo.balance = 1
+            accountTwo.user = userOne
+            accountTwo.AcNumber = "12345678901";
+            accountTwo.type = "Corriente";
+            await connection.manager.save(accountTwo);
+        }
+        if (!accountValidateThree) {
+            accountThree.balance = 1
+            accountThree.user = userTwo
+            accountThree.AcNumber = "12345678902";
+            accountThree.type = "Ahorros";
+            await connection.manager.save(accountThree);
         }
     })
     .catch((error) => console.log(error));
